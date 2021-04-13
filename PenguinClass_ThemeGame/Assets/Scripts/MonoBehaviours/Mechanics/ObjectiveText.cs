@@ -35,14 +35,18 @@ public class ObjectiveText : MonoBehaviour
             gameManager.gamePaused = false;
         }
 
-        //for(int i = 0; i < typedSolution.Length; i++)
-        //{
-        //    if(typedSolution[i] != realSolution[i])
-        //    {
-        //        int charIndex = thisInput.text.IndexOf(typedSolution[i].ToString());
-        //        thisInput.text = thisInput.text.Replace(thisInput.text[charIndex].ToString(), "<color=red>" + thisInput.text[charIndex].ToString() + "</color>");
-        //    }
-        //}
+        if (Input.anyKeyDown)
+        {
+            //for (int i = 0; i < typedSolution.Length; i++)
+            //{
+            //    if (typedSolution[i] != realSolution[i])
+            //    {
+            //        int charIndex = thisInput.text.IndexOf(typedSolution[i].ToString());
+            //        thisInput.text = thisInput.text.Replace(thisInput.text[charIndex].ToString(), "<color=red>" + thisInput.text[charIndex].ToString() + "</color>");
+            //    }
+            //}
+        }
+
     }
 
     public void ObjectiveSolution(string solutionText)
