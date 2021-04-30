@@ -9,6 +9,8 @@ TagManager:
   - FinishedObj
   - Enemy
   - ObjectivesController
+  - LostAnimal
+  - SolvedAnimal
   layers:
   - Default
   - TransparentFX

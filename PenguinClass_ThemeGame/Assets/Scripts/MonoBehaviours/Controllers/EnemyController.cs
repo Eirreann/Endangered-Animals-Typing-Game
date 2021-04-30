@@ -66,5 +66,9 @@ public class EnemyController : MonoBehaviour
         {
             collision.GetComponent<ObjectiveObj>().stolen = true;
         }
+        else
+        {
+            return;
+        }
     }
 }
