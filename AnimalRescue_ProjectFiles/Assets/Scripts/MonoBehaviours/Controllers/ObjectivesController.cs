@@ -1,22 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ObjectivesController : MonoBehaviour
 {
     public ObjectiveObj[] objectives;
     public Transform[] solvedLocations;
-    private List<ObjectiveObj> listSolvedObjs;
-    private List<ObjectiveObj> listLostObjs;
+    public List<ObjectiveObj> listSolvedObjs;
+    public List<ObjectiveObj> listLostObjs;
+    public Text ScoreText;
     [SerializeField]
     private GameObject winText;
     [SerializeField]
     private GameObject loseText;
+    [HideInInspector]
+    public int Score = 0;
 
     [HideInInspector]
     public bool gameOver = false;
     [HideInInspector]
     public GameObject gameOverText;
+    public GameObject UICanvas;
+    public GameObject GameOverCanvas;
 
     private int resolvedObjCount = 0;
 
@@ -30,6 +36,10 @@ public class ObjectivesController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Score = listSolvedObjs.Count - listLostObjs.Count/2;
+
+        ScoreText.text = Score.ToString();
+
         if(resolvedObjCount >= objectives.Length && !gameOver)
         {
             CheckWinConditions();
@@ -77,11 +87,14 @@ public class ObjectivesController : MonoBehaviour
                 lostObjs++;
         }
 
-        gameOverText = (solvedObjs >= lostObjs) ? winText : loseText;
+        gameOverText = (solvedObjs >= lostObjs) ? winText : loseText;       
     }
 
     private void WinCondition()
     {
         gameOverText.SetActive(true);
+        GameOverCanvas.SetActive(true);
+        UICanvas.SetActive(false);
+        GetComponent<EndLevelUI>().AssessPerformance();
     }
 }

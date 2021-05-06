@@ -17,13 +17,16 @@ public class ObjectiveObj : MonoBehaviour
     public GameObject lostText;
 
     private Collider2D col;
-    private SpriteRenderer spr;
+    [HideInInspector] public SpriteRenderer spr;
     //private float fadeAmount = 0.75f;
 
     private ObjectivesController objController;
     private EnemyController enemy;
     static private int stolenLocNum = 0;
     static private int solvedLocNum = 0;
+
+    [HideInInspector]
+    public bool isAssessed = false;
 
     private void Start()
     {
@@ -81,12 +84,14 @@ public class ObjectiveObj : MonoBehaviour
         if (status)
         {
             solvedText.SetActive(true);
+            objController.ScoreText.color = Color.green;
             Invoke("SolvedText", 3f);
         }
                 
         else if (!status)
         {
             lostText.SetActive(true);
+            objController.ScoreText.color = Color.red;
             Invoke("LostText", 3f);
         }
     }
@@ -144,10 +149,13 @@ public class ObjectiveObj : MonoBehaviour
     private void SolvedText()
     {
         solvedText.SetActive(false);
+        objController.ScoreText.color = Color.white;
+        
     }
 
     private void LostText()
     {
         lostText.SetActive(false);
+        objController.ScoreText.color = Color.white;
     }
 }
